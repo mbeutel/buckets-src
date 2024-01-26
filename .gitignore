@@ -1,0 +1,28 @@
+*.pdf
+
+# Build results
+build/
+out/
+
+# Visual Studio and VS Code cache/options directory
+.vs/
+.vscode/
+
+# Other Visual Studio files
+CMakeSettings.json
+
+# Python files and directories
+*.pyc
+__pycache__
+
+# Simulation results
+*.tsv
+*.h5
+data/
+
+# Other artifacts
+*.svg
+*.log
+*.aux
+*.out
+

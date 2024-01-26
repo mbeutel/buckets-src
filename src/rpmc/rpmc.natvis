@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AutoVisualizer xmlns="http://schemas.microsoft.com/vstudio/debugger/natvis/2010">
+
+    <Type Name="rpmc::Interval&lt;*&gt;">
+        <DisplayString>[{ a_,g }, { b_,g }]</DisplayString>
+    </Type>
+
+    <Type Name="rpmc::CenteredInterval&lt;*&gt;">
+        <DisplayString>({ center_,g } ± { width_,g }) ≡ [{ center_ - width_/2,g }, { center_ + width_/2,g }]</DisplayString>
+    </Type>
+
+    <Type Name="rpmc::ExpandoArray&lt;*,*,*&gt;">
+        <DisplayString>{ (rpmc::ExpandoArray&lt;$T1,$T2,$T3&gt;::AxisData (&amp;&amp;)[$T2])axisData_._Elems }</DisplayString>
+        <Expand>
+            <Item Name="axes">axisData_</Item>
+            <ArrayItems Condition="$T2 != 0">
+                <Direction>Forward</Direction>
+                <Rank>$T2</Rank>
+                <Size>axisData_[$i].lastIndex - axisData_[$i].firstIndex</Size>
+                <LowerBound>axisData_[$i].firstIndex</LowerBound>
+                <ValuePointer>($T1*) data_._Mypair._Myval2</ValuePointer>
+            </ArrayItems>
+        </Expand>
+    </Type>
+
+    <Type Name="rpmc::BucketingScheme&lt;*&gt;::Bucket_&lt;*&gt;">
+        <DisplayString>label={ it_._Ptr->label }</DisplayString>
+        <Expand>
+            <ExpandedItem>*it_._Ptr</ExpandedItem>
+        </Expand>
+    </Type>
+    <Type Name="rpmc::BucketingScheme&lt;*&gt;::SubBucket_&lt;*&gt;">
+        <DisplayString>label={ label_ }</DisplayString>
+        <Expand>
+            <Item Name="label">label_</Item>
+            <ExpandedItem>*subBucketRecord_</ExpandedItem>
+        </Expand>
+    </Type>
+
+    <Type Name="rpmc::ParticleMassAndSwarmRegimeBucketIndex">
+        <DisplayString>{{ cls={ classification,en } MIdx={ (int) MIdx } mIdx={ (int) mIdx } }}</DisplayString>
+    </Type>
+    <Type Name="rpmc::MERSBucketIndex">
+        <DisplayString>{{ cls={ classification,en } rIdx={ (int) rIdx } eIdx={ (int) eIdx } sinincIdx={ (int) sinincIdx } MIdx={ (int) MIdx } mIdx={ (int) mIdx } }}</DisplayString>
+    </Type>
+
+    <Type Name="rpmc::HashExpandoArray&lt;*,*&gt;">
+        <DisplayString>{ data_,view(raw) }</DisplayString>
+        <Expand>
+            <ExpandedItem>data_,view(raw)</ExpandedItem>
+        </Expand>
+    </Type>
+
+    <Type Name="rpmc::RPMC3Operator&lt;*&gt;::ParticleBaseEntry">
+        <DisplayString>{{ active={active} bucketIndex={bucketIndex,view(raw)} }}</DisplayString>
+        <Expand>
+            <Item Name="active">active</Item>
+            <Item Name="bucketIndex">bucketIndex,view(raw)</Item>
+        </Expand>
+    </Type>
+    <Type Name="rpmc::RPMC3Operator&lt;*&gt;::LocalParticleSortableEntry">
+        <DisplayString>{{ active={active} bucketIndex={bucketIndex,view(raw)} location={location,g} }}</DisplayString>
+        <Expand>
+            <Item Name="active">active</Item>
+            <Item Name="bucketIndex">bucketIndex,view(raw)</Item>
+            <Item Name="location">location,g</Item>
+        </Expand>
+    </Type>
+    <Type Name="rpmc::RPMC3Operator&lt;*&gt;::ParticleEntry">
+        <DisplayString>{{ active={active} bucketIndex={bucketIndex,view(raw)} location={location,g} particleIndex={particleIndex} }}</DisplayString>
+        <Expand>
+            <Item Name="active">active</Item>
+            <Item Name="bucketIndex">bucketIndex,view(raw)</Item>
+            <Item Name="location">location,g</Item>
+            <Item Name="particleIndex">particleIndex</Item>
+        </Expand>
+    </Type>
+
+    <Type Name="rpmc::RPMC3Operator&lt;*&gt;::NonlocalCumulativeBucketProperties">
+        <DisplayString Condition="nDelta != 0">{{ bucketIndex={bucketIndex,view(raw)} n={n}→{n+nDelta} numRemovals={numRemovals} λc={cumulativeInteractionRates,view(raw)} properties={properties} }}</DisplayString>
+        <DisplayString Condition="nDelta == 0">{{ bucketIndex={bucketIndex,view(raw)} n={n} numRemovals={numRemovals} λc={cumulativeInteractionRates,view(raw)} properties={properties} }}</DisplayString>
+        <DisplayString>{{ bucketIndex={bucketIndex,view(raw)} n={n} properties={properties} numRemovals={numRemovals} }}</DisplayString>
+        <Expand>
+            <Item Name="bucketIndex">bucketIndex,view(raw)</Item>
+            <Item Name="n">n</Item>
+            <Item Name="δn">nDelta</Item>
+            <Item Name="needRecomputeInteractionRates">needRecomputeInteractionRates</Item>
+            <Item Name="numRemovals">numRemovals</Item>
+            <Item Name="properties">properties</Item>
+            <Item Name="cumulativeInteractionRates">cumulativeInteractionRates,view(raw)</Item>
+        </Expand>
+    </Type>
+    <Type Name="rpmc::RPMC3Operator&lt;*&gt;::LocalCumulativeBucketProperties">
+        <DisplayString Condition="nDelta != 0">{{ bucketIndex={bucketIndex,view(raw)} n={n}→{n+nDelta} numRemovals={numRemovals} λc={cumulativeInteractionRates,view(raw)} properties={properties} }}</DisplayString>
+        <DisplayString Condition="nDelta == 0">{{ bucketIndex={bucketIndex,view(raw)} n={n} numRemovals={numRemovals} λc={cumulativeInteractionRates,view(raw)} properties={properties} }}</DisplayString>
+        <Expand>
+            <Item Name="bucketIndex">bucketIndex,view(raw)</Item>
+            <Item Name="n">n</Item>
+            <Item Name="δn">nDelta</Item>
+            <Item Name="needRecomputeInteractionRates">needRecomputeInteractionRates</Item>
+            <Item Name="numRemovals">numRemovals</Item>
+            <Item Name="properties">properties</Item>
+            <Item Name="cumulativeInteractionRates">cumulativeInteractionRates,view(raw)</Item>
+            <Item Name="referenceRadii">referenceRadii,view(raw)</Item>
+            <Item Name="referenceRadiusCoverageCounts">referenceRadiusCoverageCounts,view(raw)</Item>
+        </Expand>
+    </Type>
+
+    <Type Name="rpmc::RPMC3Operator&lt;*&gt;::NonlocalBucketBucketData">
+        <DisplayString>{{ interactionRates={interactionRates,view(raw)} effectiveSwarmCounts={effectiveSwarmCounts,view(raw)} }}</DisplayString>
+        <Expand>
+            <Item Name="interactionRates">interactionRates,view(raw)</Item>
+        </Expand>
+    </Type>
+    <Type Name="rpmc::RPMC3Operator&lt;*&gt;::LocalBucketBucketData">
+        <DisplayString>{{ interactionRates={interactionRates,view(raw)} effectiveSwarmCounts={effectiveSwarmCounts,view(raw)} interactionRadii={interactionRadii,view(raw)} }}</DisplayString>
+        <Expand>
+            <Item Name="interactionRates">interactionRates,view(raw)</Item>
+            <Item Name="interactionRadii">interactionRadii,view(raw)</Item>
+            <Item Name="effectiveSwarmCounts">effectiveSwarmCounts,view(raw)</Item>
+        </Expand>
+    </Type>
+
+</AutoVisualizer>

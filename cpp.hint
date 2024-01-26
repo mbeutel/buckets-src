@@ -1,0 +1,7 @@
+// Hint files help the Visual Studio IDE interpret Visual C++ identifiers
+// such as names of functions and macros.
+// For more information see https://go.microsoft.com/fwlink/?linkid=865984
+
+#define gsl_CONSTRAINT(__VA_ARGS__)  typename
+#define gsl_DEFINE_ENUM_BITMASK_OPERATORS(ENUM)
+#define gsl_DEFINE_ENUM_RELATIONAL_OPERATORS(ENUM)
