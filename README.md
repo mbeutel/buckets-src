@@ -18,7 +18,7 @@ henceforth referred to as [Beutel et al. (in press)](#beutel_efficient_2024).
 
 Our publication introduces an efficient computational scheme for representative stochastic methods,
 dubbed the 'bucketing scheme'. This repository contains two reference implementations of the
-extended Representative Particle Monte Carlo method (see [Beutel & Dullemond (2023)](#beutel_improved_2023)):
+extended Representative Particle Monte Carlo method (see [Beutel & Dullemond 2023](#beutel_improved_2023)):
 once with the traditional scheme, which uses discrete inverse transform sampling,
 and once with the bucketing scheme, which maintains a dynamic grouping ('buckets')
 of representative particles and combines discrete inverse transform sampling with
@@ -27,9 +27,9 @@ interaction rate bounds. For a detailed introduction of the computational scheme
 refer to [Beutel et al. (in press)](#beutel_efficient_2024).
 
 Our code is written in portable C++20 and was tested on Windows with Microsoft Visual C++ 2022
-and Clang 16, and on Linux with GCC 12.2 on various (ancient to modern) x86-64 platforms. The
-code is single-threaded; although we have a parallel implementation in the works, it is not quite
-ready yet.
+and Clang 16, and on Linux with GCC 12.2 on different x86-64 platforms.
+The code is single-threaded; although we have a parallel implementation in the works, it is not
+quite ready yet.
 
 The simulation code is entirely written in C++. For convenient use, we have additionally developed
 a Python module through which an RPMC simulation can be configured and controlled. We provide a
@@ -52,7 +52,7 @@ CMake (v3.24 or newer), a conforming C++20 compiler, and the following build dep
 The supplied CMake configuration script uses the [FetchContent](https://cmake.org/cmake/help/latest/module/FetchContent.html)
 module to obtain these source dependencies automatically.
 
-Additionally, a recent version of the [*Python*](https://www.python.org/) programming environment
+A recent version of the [*Python*](https://www.python.org/) programming environment
 (Python 3.10 was used in our tests) should be installed and accessible to CMake. The Python scripts
 supplied with this repository require the following Python packages:
 
@@ -70,11 +70,11 @@ python -m pip install --user numpy scipy matplotlib pandas
 
 ## Usage
 
-After building the project, a Python module named `rpmc` is available in the build directory
-(With CPython 3.10 on 64-bit Windows, the file may be named 'rpmc.cp310-win_amd64.pyd').
+After building the project, a Python module named `rpmc` is available in the build directory.
+(As an example, with CPython 3.10 on 64-bit Windows, the file may be named 'rpmc.cp310-win_amd64.pyd'.)
 
 Open a command environment (on Windows, we highly recommend using
-[PowerShell](https://learn.microsoft.com/en-us/powershell/) rather than the arcane 'cmd.exe' command interpreter)
+[PowerShell](https://learn.microsoft.com/en-us/powershell/) rather than the archaic 'cmd.exe' command interpreter)
 and navigate to the `script` subdirectory of the source repository.
 Then append the build directory, here referred to as '<my-build-dir>', to the `PYTHONPATH` environment variable:
 
@@ -116,6 +116,7 @@ For many simulations, the script supports configuring the simulation parameters 
 <details>
 <summary>click to expand</summary>
 <p>
+
 ```
   --method <m>          simulation method to use (rpmc, rpmc-traditional)
   --n <int>             number of representative particles
@@ -580,6 +581,8 @@ bucketing-plots.py --simulations [3.1,3.9] \
     --report --plot --overwrite
 ```
 
+For a detailed discussion of Ormel's model, see [Beutel (2024)](#beutel_stochastic_2024).
+
 
 ### Figure 14
 
@@ -846,22 +849,22 @@ bucketing-plots.py --simulations 3.7 --plot
 
 ## References
 
-<a name="beutel_efficient_2024">M. Beutel, C. P. Dullemond, and R. Strzodka.
+<a name="beutel_efficient_2024" />M. Beutel, C. P. Dullemond, and R. Strzodka.
 Efficient simulation of stochastic interactions among representative Monte Carlo particles.
-Astronomy & Astrophysics, in press.</a>
+Astronomy & Astrophysics, in press.
 
-<a name="beutel_stochastic_2024">M. Beutel.
+<a name="beutel_stochastic_2024" />M. Beutel.
 Stochastic and deterministic methods for simulating the evolution of solid bodies in protoplanetary disks.
-Doctoral thesis, submitted to Ruprecht-Karls-Universität Heidelberg, Germany, 2024.</a>
+Doctoral thesis, submitted to Ruprecht-Karls-Universität Heidelberg, Germany, 2024.
 
-<a name="beutel_improved_2023">M. Beutel and C. P. Dullemond.
+<a name="beutel_improved_2023" />M. Beutel and C. P. Dullemond.
 An improved Representative Particle Monte Carlo method for the simulation of particle growth.
-Astronomy & Astrophysics, 670:A134, February 2023.</a>
+Astronomy & Astrophysics, 670:A134, February 2023.
 ISSN 0004-6361, 1432-0746. doi: 10.1051/0004-6361/202244955.
 URL https://www.aanda.org/10.1051/0004‐6361/202244955
 
-<a name="beutel_paradigm_2023">M. Beutel and R. Strzodka.
+<a name="beutel_paradigm_2023" />M. Beutel and R. Strzodka.
 A Paradigm for Interval-Aware Programming.
 In John Gustafson, Siew Hoon Leong, and Marek Michalewicz, editors, Next Generation
 Arithmetic, Lecture Notes in Computer Science, pages 38–60, Cham, 2023. Springer
-Nature Switzerland. ISBN 978-3-031-32180-1. doi: 10.1007/978-3-031-32180-1_3.</a>
+Nature Switzerland. ISBN 978-3-031-32180-1. doi: 10.1007/978-3-031-32180-1_3.
